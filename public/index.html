@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>공용 채팅방</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <h1 class="room-title">공용 채팅방</h1>
+      <div class="presence"><span id="userCount">0</span>명 온라인</div>
+    </header>
+
+    <main class="chat">
+      <aside class="sidebar">
+        <h2>참여자</h2>
+        <ul id="userList" class="user-list"></ul>
+      </aside>
+      <section class="messages-area">
+        <ul id="messages" class="messages"></ul>
+        <div id="typing" class="typing" style="display:none;"></div>
+      </section>
+    </main>
+
+    <footer class="composer">
+      <textarea id="input" placeholder="메시지를 입력하세요" rows="2"></textarea>
+      <button id="send">전송</button>
+    </footer>
+  </div>
+
+  <div id="joinModal" class="modal">
+    <div class="modal-content">
+      <h2>닉네임을 입력하세요</h2>
+      <input id="nameInput" type="text" maxlength="20" placeholder="예: 홍길동" />
+      <button id="joinBtn">입장</button>
+      <div id="joinError" class="error" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client.js"></script>
+  <noscript>이 앱을 사용하려면 JavaScript가 필요합니다.</noscript>
+  
+</body>
+</html>
+
+
