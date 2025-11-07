@@ -3,7 +3,7 @@
 Single-room realtime chat: open a link, enter a name, and chat with everyone.
 
 ## You can play this! 
-https://railway.com/project/f6f4a2de-286c-4a4e-8126-f48610ccaba0/service/736dff7d-ff1f-4cc4-b4a0-bc9ad3e6bd78/settings?environmentId=8eb7da6c-4e7e-4e5a-aad7-0a6c8fab4b59
+https://realtime-chat-room-production-07cc.up.railway.app/
 (serving on railway)
 ## Run locally
 
@@ -37,5 +37,6 @@ RATE_LIMIT_BURST=10
 ## Notes
 - In-memory state. For multiple instances, add Socket.IO Redis adapter and shared store.
 - Messages are escaped server-side; do not render raw HTML from users.
+
 
 
