@@ -8,8 +8,13 @@
   --system: #374151;
 }
 
-* { box-sizing: border-box; }
-html, body { height: 100%; }
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
 body {
   margin: 0;
   background: var(--bg);
@@ -17,53 +22,186 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-#app { display: grid; grid-template-rows: auto 1fr auto; height: 100vh; }
+#app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
 
 .app-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 16px; background: var(--panel); border-bottom: 1px solid #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--panel);
+  border-bottom: 1px solid #1f2937;
 }
-.room-title { margin: 0; font-size: 18px; }
-.presence { color: var(--muted); font-size: 14px; }
+.room-title {
+  margin: 0;
+  font-size: 18px;
+}
+.presence {
+  color: var(--muted);
+  font-size: 14px;
+}
 
-.chat { display: grid; grid-template-columns: 220px 1fr; gap: 0; min-height: 0; }
-.sidebar { border-right: 1px solid #1f2937; padding: 12px; overflow: auto; }
-.sidebar h2 { margin: 6px 0 8px; font-size: 14px; color: var(--muted); font-weight: 600; }
-.user-list { list-style: none; margin: 0; padding: 0; }
-.user-list li { padding: 6px 0; border-bottom: 1px dashed #1f2937; font-size: 14px; }
+.chat {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0;
+  /* 채팅 영역이 남은 뷰포트 높이를 모두 차지하도록 설정 */
+  min-height: 0;
+}
+.sidebar {
+  border-right: 1px solid #1f2937;
+  padding: 12px;
+  overflow: auto;
+}
+.sidebar h2 {
+  margin: 6px 0 8px;
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.user-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.user-list li {
+  padding: 6px 0;
+  border-bottom: 1px dashed #1f2937;
+  font-size: 14px;
+}
 
-.messages-area { display: grid; grid-template-rows: 1fr auto; }
-.messages { list-style: none; margin: 0; padding: 12px; overflow: auto; }
-.msg { margin-bottom: 10px; padding: 8px 10px; background: #0b1220; border-radius: 8px; max-width: 70%; }
-.msg.mine { margin-left: auto; background: #0b1c3a; border: 1px solid rgba(29,78,216,0.4); }
-.msg.system { background: var(--system); color: #d1d5db; text-align: center; max-width: 100%; }
-.msg .meta { display: flex; gap: 8px; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
-.msg .text { white-space: pre-wrap; word-break: break-word; font-size: 14px; }
+.messages-area {
+  display: grid;
+  /* 메시지 목록이 남은 공간을 모두 차지하고, typing 영역은 내용만큼 차지 */
+  grid-template-rows: 1fr auto;
+  /* messages-area 자체에 overflow: hidden을 적용하여 messages ul의 스크롤만 보이게 함 */
+  overflow: hidden;
+}
+.messages {
+  list-style: none;
+  margin: 0;
+  padding: 12px;
+  /* 핵심: 내용이 넘칠 때 스크롤바가 생기도록 설정 */
+  overflow-y: auto;
+}
+.msg {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  background: #0b1220;
+  border-radius: 8px;
+  max-width: 70%;
+}
+.msg.mine {
+  margin-left: auto;
+  background: #0b1c3a;
+  border: 1px solid rgba(29, 78, 216, 0.4);
+}
+.msg.system {
+  background: var(--system);
+  color: #d1d5db;
+  text-align: center;
+  max-width: 100%;
+}
+.msg .meta {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.msg .text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 14px;
+}
 
-.typing { color: var(--muted); padding: 0 12px 12px; font-size: 13px; }
+.typing {
+  color: var(--muted);
+  padding: 0 12px 12px;
+  font-size: 13px;
+}
 
-.composer { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 10px; border-top: 1px solid #1f2937; background: var(--panel); }
+.composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid #1f2937;
+  background: var(--panel);
+}
 .composer textarea {
-  width: 100%; resize: none; background: #0b1220; color: var(--text); border: 1px solid #1f2937; border-radius: 8px; padding: 10px; outline: none;
+  width: 100%;
+  resize: none;
+  background: #0b1220;
+  color: var(--text);
+  border: 1px solid #1f2937;
+  border-radius: 8px;
+  padding: 10px;
+  outline: none;
 }
 .composer button {
-  background: var(--accent); color: #052e16; border: none; border-radius: 8px; padding: 0 16px; font-weight: 700; cursor: pointer;
+  background: var(--accent);
+  color: #052e16;
+  border: none;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .modal {
-  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); place-items: center; padding: 16px;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  place-items: center;
+  padding: 16px;
 }
 .modal-content {
-  background: var(--panel); border: 1px solid #1f2937; border-radius: 12px; padding: 20px; width: 100%; max-width: 360px;
+  background: var(--panel);
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 360px;
 }
-.modal-content h2 { margin-top: 0; }
-.modal-content input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #1f2937; background: #0b1220; color: var(--text); }
-.modal-content button { margin-top: 10px; width: 100%; background: var(--accent); color: #052e16; border: none; border-radius: 8px; padding: 10px; font-weight: 700; cursor: pointer; }
-.error { color: #fca5a5; font-size: 13px; margin-top: 6px; }
+.modal-content h2 {
+  margin-top: 0;
+}
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #1f2937;
+  background: #0b1220;
+  color: var(--text);
+}
+.modal-content button {
+  margin-top: 10px;
+  width: 100%;
+  background: var(--accent);
+  color: #052e16;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.error {
+  color: #fca5a5;
+  font-size: 13px;
+  margin-top: 6px;
+}
 
 @media (max-width: 800px) {
-  .chat { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
+  .chat {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
 }
-
-
